@@ -1,0 +1,40 @@
+syntax = "proto3";
+package hue;
+
+service Hue { 
+  rpc toggleState(ToggleStateRequest) returns (ToggleStateResponse);
+  rpc getRooms(Empty) returns (RoomList);
+  rpc updateRoomBrightness(RoomBrightnessRequest) returns (RoomBrightnessResponse);
+}
+
+message RoomBrightnessRequest { 
+  uint32 id = 1;
+  int32 bri_inc = 2;
+}
+
+message RoomBrightnessResponse { 
+  int32 error = 1;
+  string msg = 2;
+}
+
+message Empty {}
+
+message Room {
+  string name = 1;
+  uint32 id = 2;
+  bool on = 3;
+  uint32 bri = 4;
+}
+
+message RoomList {
+  repeated Room rooms = 1;
+}
+
+message ToggleStateRequest { 
+  uint32 id = 1;
+}
+
+message ToggleStateResponse { 
+  int32 error = 1;
+  string msg = 2;
+}

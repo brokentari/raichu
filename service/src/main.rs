@@ -1,3 +1,4 @@
+use raichu::configuration::get_configuration;
 use raichu::phillips::PhillipsHueClient;
 use std::time::Duration;
 
@@ -116,6 +117,8 @@ impl Hue for MyHue {
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let config = get_configuration().expect("failed to read config");
+
     let addr = "[::1]:50051".parse()?;
     let hue = MyHue::new();
 

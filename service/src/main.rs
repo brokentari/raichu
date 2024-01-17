@@ -18,13 +18,10 @@ pub struct MyHue {
 }
 
 impl MyHue {
-    pub fn new() -> Self {
-        let client = PhillipsHueClient::new(
-            "http://192.168.1.152/api/".to_string(),
-            "Px9j4YHTmCzFDbcbKq8onZtK8-8jvhw1sJqjBElL".to_string(),
-            Duration::from_millis(10000),
-        )
-        .expect("failed to initialized phillips hue client");
+    pub fn new(base_url: String, username: String, timeout: u32) -> Self {
+        let client =
+            PhillipsHueClient::new(base_url, username, Duration::from_millis(timeout as u64))
+                .expect("failed to initialized phillips hue client");
 
         MyHue { hue_client: client }
     }
@@ -120,7 +117,11 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let config = get_configuration().expect("failed to read config");
 
     let addr = "[::1]:50051".parse()?;
-    let hue = MyHue::new();
+    let hue = MyHue::new(
+        config.service.hue_base_url,
+        config.service.hue_username,
+        config.service.timeout,
+    );
 
     let hue_server: HueServer<MyHue> = HueServer::new(hue);
 

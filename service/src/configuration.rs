@@ -1,4 +1,4 @@
-[derive(serde::Deserialize, Clone)]
+#[derive(serde::Deserialize, Clone)]
 pub struct Settings {
     pub service: ServiceSettings,
 }
@@ -19,7 +19,7 @@ pub fn get_configuration() -> Result<Settings, config::ConfigError> {
 
     let file_name = "local.yaml";
     let settings = config::Config::builder()
-        .add_source(config::File::from(config_dir.join((file_name))))
+        .add_source(config::File::from(config_dir.join(file_name)))
         .add_source(
             config::Environment::with_prefix("RAICHU")
                 .prefix_separator("_")

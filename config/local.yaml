@@ -1,0 +1,5 @@
+service:
+  hue_host: 192.168.1.152
+  hue_base_url: "http://192.168.1.152/api/"
+  hue_username: "Px9j4YHTmCzFDbcbKq8onZtK8-8jvhw1sJqjBElL"
+  timeout: 10000 

@@ -2,35 +2,17 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+1. Install packages with `make install`. This will install associated cargo and npm packages
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+2. Build the protocol buffer definitions with `make build-proto` for interaction between server and frontend
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. With individual terminals, run `make run-backend-dev` and `make run-frontend-dev` to start components locally (TODO: add a recipe to start them individually)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Config
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Configurable variables:
+  - service.hue_host: the IP/domain name of the Hue Bridge
+  - service.hue_base_url: complete url of the Hue API endpoint (should end with /api)
+  - service.hue_username: username used for application development in Hue bridge
+  - service.timeout: how long to wait for connection to the Hue bridge
